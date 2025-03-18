@@ -5,27 +5,27 @@ export interface Arithmeticable<T> {
   /**
    * Funcion que suma dos complejos
    * @param value - ComplexNumber
-   * @return La suma de ambos
+   * @returns La suma de ambos
    */
   add(value: T): T;
 
   /**
    * Funcion que resta dos complejos
    * @param value - ComplexNumber
-   * @return La resta de ambos
+   * @returns La resta de ambos
    */
   substract(value: T): T;
 
   /**
    * Funcion que multiplica dos complejos
    * @param value - ComplexNumber
-   * @return La multiplicacion de ambos
+   * @returns La multiplicacion de ambos
    */
   multiply(value: T): T;
   /**
    * Funcion que divide dos complejos
    * @param value - ComplexNumber
-   * @return La division de ambos
+   * @returns La division de ambos
    */
   divide(value: T): T;
 }
@@ -88,8 +88,9 @@ export class ComplexNumber implements Arithmeticable<ComplexNumber> {
   }
 
   divide(value: ComplexNumber): ComplexNumber {
-    let real_part = ((this.real_ * value.real) + (this.imag_ - value.imag)) / ((value.real * value.real) + (value.imag * value.imag));
-    let imag_part = ((this.imag_ * value.real) - (this.real_ - value.imag)) / ((value.real * value.real) + (value.imag * value.imag));
+    let denominator = (value.real_ * value.real_) + (value.imag_ * value.imag_);
+    let real_part = ((this.real_ * value.real_) + (this.imag_ * value.imag_)) / denominator;
+    let imag_part = ((this.imag_ * value.real_) - (this.real_ * value.imag_)) / denominator;
 
     return new ComplexNumber(real_part, imag_part);
   }
